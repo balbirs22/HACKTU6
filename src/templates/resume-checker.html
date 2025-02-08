@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATS Resume Checker - Career Pathway Generator</title>
+  <!-- Link to your CSS file from the static folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('index') }}">Career Pathway Generator</a>
+    </div>
+    <div class="nav-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('resume_checker') }}">ATS Resume</a></li>
+      <!-- Add other navigation links as needed -->
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <h1>ATS Resume Checker</h1>
+    <p>Optimize your resume for Applicant Tracking Systems</p>
+  </header>
+
+  <section class="resume-checker-container">
+    <div class="upload-section">
+      <div class="upload-box" id="upload-box">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <h3>Upload Your Resume</h3>
+        <p>Drag and drop your resume here or click to browse</p>
+        <input type="file" id="resume-upload" accept=".pdf,.doc,.docx" hidden />
+      </div>
+      <p id="file-name"></p>
+    </div>
+
+    <div class="analysis-section">
+      <div class="loader" id="analysis-loader" style="display: none;">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Analyzing your resume...</p>
+      </div>
+      <div id="resume-results" class="results-container"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Career Pathway Generator. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const uploadBox = document.getElementById("upload-box");
+      const fileInput = document.getElementById("resume-upload");
+      const fileNameDisplay = document.getElementById("file-name");
+      const loader = document.getElementById("analysis-loader");
+      const resultsContainer = document.getElementById("resume-results");
+
+      // When the upload box is clicked, trigger the file dialog
+      uploadBox.addEventListener("click", function () {
+        fileInput.click();
+      });
+
+      // When a file is selected via the file input
+      fileInput.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+          fileNameDisplay.textContent = `Uploaded: ${file.name}`;
+          uploadResume(file);
+        }
+      });
+
+      // Handle drag-and-drop events
+      uploadBox.addEventListener("dragover", function (event) {
+        event.preventDefault();
+        uploadBox.classList.add("drag-over");
+      });
+
+      uploadBox.addEventListener("dragleave", function () {
+        uploadBox.classList.remove("drag-over");
+      });
+
+      uploadBox.addEventListener("drop", function (event) {
+        event.preventDefault();
+        uploadBox.classList.remove("drag-over");
+        const file = event.dataTransfer.files[0];
+        if (file) {
+          fileInput.files = event.dataTransfer.files;
+          fileNameDisplay.textContent = `Uploaded: ${file.name}`;
+          uploadResume(file);
+        }
+      });
+
+      // Function to send the resume file to the Flask backend for processing
+      function uploadResume(file) {
+        loader.style.display = "block";
+        resultsContainer.innerHTML = "";
+        console.log("Uploading file:", file.name);
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        // Use a relative URL; Flask will serve /upload_resume on the same domain/port.
+        fetch("/upload_resume", {
+          method: "POST",
+          body: formData,
+        })
+          .then(response => {
+            console.log("Server response status:", response.status);
+            return response.json();
+          })
+          .then(data => {
+            console.log("Server JSON response:", data);
+            loader.style.display = "none";
+
+            if (data.error) {
+              resultsContainer.innerHTML = `<p>Error: ${data.error}</p>`;
+            } else if (data.result) {
+              let result = data.result;
+              let skills = result.extracted_skills ? result.extracted_skills.join(", ") : "None found";
+              let missingSkills = result.best_profile_missing_skills ? result.best_profile_missing_skills.join(", ") : "None";
+
+              let jobsHTML = "";
+              if (result.jobs && Array.isArray(result.jobs) && result.jobs.length > 0) {
+                jobsHTML += "<h3>Job Listings:</h3><ul>";
+                result.jobs.forEach(job => {
+                  jobsHTML += `<li><a href="${job.job_url}" target="_blank">${job.title}</a> at ${job.company} - ${job.location}</li>`;
+                });
+                jobsHTML += "</ul>";
+              } else {
+                jobsHTML = "<p>No job listings found.</p>";
+              }
+
+              resultsContainer.innerHTML = `
+                <h3>Resume Analysis Complete</h3>
+                <p><strong>File:</strong> ${file.name}</p>
+                <p><strong>Extracted Skills:</strong> ${skills}</p>
+                <p><strong>Best Fit Profile:</strong> ${result.best_fit_profile} (${(result.best_profile_match_ratio * 100).toFixed(2)}% match)</p>
+                <p><strong>Missing Skills:</strong> ${missingSkills}</p>
+                ${jobsHTML}
+              `;
+            } else {
+              resultsContainer.innerHTML = `<p>Unexpected server response format.</p>`;
+            }
+          })
+          .catch(error => {
+            console.error("Upload failed:", error);
+            loader.style.display = "none";
+            resultsContainer.innerHTML = `<p>Upload failed: ${error.message}</p>`;
+          });
+      }
+    });
+  </script>
+</body>
+</html>
