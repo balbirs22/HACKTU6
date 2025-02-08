@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Resume Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            margin-bottom: 15px;
+            padding: 4px 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ATS Resume Checker</h1>
+        <form id="resume-form">
+            <label for="resume">Upload your resume (PDF, DOC, DOCX):</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+            <button type="submit">Check Resume</button>
+        </form>
+        <div id="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('resume-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var file = document.getElementById('resume').files[0];
+            if (file) {
+                // Simulate processing
+                document.getElementById('result').style.display = 'none';
+                setTimeout(function() {
+                    var score = Math.floor(Math.random() * 31) + 70; // Random score between 70 and 100
+                    var feedback = "Your resume scores " + score + "% on our ATS check. ";
+                    if (score < 80) {
+                        feedback += "Consider improving your keyword usage and formatting.";
+                    } else if (score < 90) {
+                        feedback += "Good job! Minor improvements could boost your score further.";
+                    } else {
+                        feedback += "Excellent! Your resume is well-optimized for ATS.";
+                    }
+                    document.getElementById('result').innerHTML = "<h3>ATS Check Result:</h3><p>" + feedback + "</p>";
+                    document.getElementById('result').style.display = 'block';
+                }, 2000); // 2 second delay to simulate processing
+            }
+        });
+    </script>
+</body>
+</html>

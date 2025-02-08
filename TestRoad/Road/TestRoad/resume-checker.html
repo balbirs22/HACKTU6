@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Resume Checker - RoadMap Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">Roadmap Generator</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="roadmaps.html">Roadmaps</a></li>
+            <li><a href="resume-checker.html">ATS Resume</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <header class="page-header">
+        <h1>ATS Resume Checker</h1>
+        <p>Optimize your resume for Applicant Tracking Systems</p>
+    </header>
+
+    <section class="resume-checker-container">
+        <div class="upload-section">
+            <div class="upload-box" id="upload-box">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload Your Resume</h3>
+                <p>Drag and drop your resume here or click to browse</p>
+                <input type="file" id="resume-upload" accept=".pdf,.doc,.docx,.txt">
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <div class="loader" id="analysis-loader" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Analyzing your resume...</p>
+            </div>
+
+            <div id="resume-results" class="results-container">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+
+            <div class="optimization-tips">
+                <h3>Resume Optimization Tips</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Use relevant keywords from the job description
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Keep formatting simple and clean
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Use standard section headings
+                    </li>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Avoid tables and complex layouts
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2024 RoadMap Generator. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Generator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-2iVXjDxcNW2/mIAdAySo2gufWUZt4Uphaz7sBc9eJObpL3s2MTsN6F2D0blR1cTqTf/vxUg5gc0j/HzAC9BjQ==" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+    <script src="grafico.js"></script>
+</head>
+<body class="text-center">
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0A62D0; ;" id="navbar">
+        <div class="container-fluid d-flex justify-content-center align-items-center">
+            <a class="navbar-brand" href="#" style="color: white">Roadmap Generator</a>
+            <ul class="navbar-nav ms-auto">
+<<<<<<< Updated upstream
+                
+=======
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.paypal.com/paypalme/angelhandal03" target="_blank" style="color: white">
+                        <img src="paypal.png" alt="PayPal" width="50" style="margin-right: 5px;">
+                        <strong>Donate</strong>
+                    </a>
+                </li>
+>>>>>>> Stashed changes
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container text-center my-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <label for="roles" >Select a role to view its roadmap:</label>
+                <select class="form-control" id="roles" onchange="mostrarRoadmap()" style="text-align: center; background-color: #191719; color: white;">
+                    <option value="data-analyst">Data Analyst</option>
+                    <option value="web-developer">Web Developer</option>
+                    <option value="cybersecurity">Cybersecurity</option>
+                    <option value="game-developer">Game Developer</option>
+                    <option value="data-scientist">Data Scientist</option>
+                    <option value="database-developer">Database Developer</option>
+                    <option value="software-developer">Software Developer</option>
+                    <option value="aws-developer">AWS Developer</option>
+                    <option value="devops">DevOps</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6 mx-auto" id="roadmap">
+                <!-- show roadmap -->
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6 mx-auto">
+                <div id="stats" class="bg-light p-3 border rounded">
+                    <div id="myChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<<<<<<< Updated upstream
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Function to get URL parameters
+            function getParameterByName(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+        
+            // Get the role parameter from the URL
+            const selectedRole = getParameterByName("role");
+        
+            if (selectedRole) {
+                const roleDropdown = document.getElementById("roles");
+                roleDropdown.value = selectedRole; // Set the dropdown value
+            }
+        });
+        </script>
+        
+=======
+    <footer class="mt-5">
+        <p>Developed by Angel Handal</p>
+    </footer>
+>>>>>>> Stashed changes
+
+</body>
+</html>
