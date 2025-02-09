@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 # Load the emails and company names from CSV
-csv_file = "./emails.csv"  # Update path if needed
+csv_file = "src/emails.csv"  # Update path if needed
 df = pd.read_csv(csv_file)
 
 # Your email credentials

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take a Quiz</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">Career Pathway Generator</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="roadmaps.html">Roadmaps</a></li>
+            <li><a href="resume-checker.html">ATS Resume</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="course_enroll.html">Courses</a></li>
+            <li><a href="takequiz.html">Take a Quiz</a></li>
+            
+        </ul>
+    </nav>
+
+    <section class="quiz-section">
+        <div class="quiz-container">
+            <h2>Quick Career Quiz</h2>
+            <form id="quizForm" class="quiz-form">
+                <label for="question1">What is your preferred coding language?</label>
+                <select id="question1">
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="csharp">C#</option>
+                </select>
+
+                <label for="question2">How many hours do you code daily?</label>
+                <input type="text" id="question2" placeholder="Enter hours (e.g., 4)">
+
+                <label for="question3">What's your target field of interest?</label>
+                <select id="question3">
+                    <option value="frontend">Frontend Development</option>
+                    <option value="backend">Backend Development</option>
+                    <option value="data_science">Data Science</option>
+                    <option value="uiux">UI/UX Design</option>
+                    <option value="devops">DevOps Engineering</option>
+                    <option value="cybersecurity">Cybersecurity</option>
+                </select>
+
+                <label for="question4">What type of projects excite you the most?</label>
+                <input type="text" id="question4" placeholder="E.g., Web apps, AI models, Mobile apps">
+
+                <label for="question5">Are you open to pursuing research or higher studies?</label>
+                <select id="question5">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="maybe">Maybe</option>
+                </select>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="thankYouScreen" class="thank-you-screen">
+        <div class="thank-you-content">
+            <h1>Thank You for Submitting Your Preferences!</h1>
+            <p>We appreciate your input and will use it to provide better recommendations for your career pathway.</p>
+            <button id="closePromptButton">Go Back</button>
+        </div>
+    </div>
+
+    <script>
+        const quizForm = document.getElementById('quizForm');
+        const thankYouScreen = document.getElementById('thankYouScreen');
+        const closePromptButton = document.getElementById('closePromptButton');
+
+        // Handle form submission
+        quizForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show the Thank-You screen
+            thankYouScreen.style.display = 'block';
+
+            // Clear the form inputs
+            quizForm.reset();
+        });
+
+        // Close Thank-You screen
+        closePromptButton.addEventListener('click', function () {
+            thankYouScreen.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

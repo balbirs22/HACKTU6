@@ -285,6 +285,20 @@ const animateOnScroll = new IntersectionObserver((entries) => {
     threshold: 0.1
 });
 
+
+document.querySelectorAll('.service-card, .team-member, .pricing-card, .contact-card').forEach(element => {
+    animateOnScroll.observe(element);
+});
+document.getElementById('submitQuiz').addEventListener('click', function () {
+    document.querySelector('.quiz-section').style.display = 'none';
+    document.querySelector('.thank-you-screen').style.display = 'block';
+  });
+  
+  document.getElementById('goBackButton').addEventListener('click', function () {
+    document.querySelector('.quiz-section').style.display = 'block';
+    document.querySelector('.thank-you-screen').style.display = 'none';
+  });
+
 document.querySelectorAll('.service-card, .team-member, .pricing-card, .contact-card').forEach(element => {
     animateOnScroll.observe(element);
 });
