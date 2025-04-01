@@ -1,7 +1,7 @@
-# CareerPath: Job Roadmap Generator & ATS Score Checker  
+# CareerLynk: Job Roadmap Generator & ATS Score Checker  
 
 ## 🌟 Overview  
-Navigating career paths can be overwhelming. **CareerPath** simplifies this process by analyzing job descriptions to identify key skills, recommending relevant resources, and ensuring your resume aligns with ATS standards. With its user-friendly interface, this tool serves as a one-stop solution for career planning and job preparation.
+Navigating career paths can be overwhelming. **CareerLynk** simplifies this process by analyzing job descriptions to identify key skills, recommending relevant resources, and ensuring your resume aligns with ATS standards. With its user-friendly interface, this tool serves as a one-stop solution for career planning and job preparation.
 
 ---
 
