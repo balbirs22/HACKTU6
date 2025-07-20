@@ -6,7 +6,7 @@ Navigating career paths can be overwhelming. **CareerLynk** simplifies this proc
 ---
 
 ## ✨ Features  
-- **🎯 Job-Specific Roadmaps**:  
+- **🎯 Job-Specific Roadmaps**:   
   Customized study plans and skill recommendations tailored to your desired role.  
 
 - **📊 ATS Score Checker**:  
